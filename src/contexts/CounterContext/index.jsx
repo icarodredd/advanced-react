@@ -1,7 +1,8 @@
 import { createContext } from "react";
+import { initialState } from "./data";
 
-const context = createContext();
+export const context = createContext();
 
 export const ContextProvider = ({ children }) => {
-  return <ContextProvider>{children}</ContextProvider>;
+  return <context.Provider value={initialState}>{children}</context.Provider>;
 };

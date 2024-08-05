@@ -1,5 +1,6 @@
 import "./App.css";
 import { createContext, useContext, useReducer } from "react";
+import { context, ContextProvider } from "./contexts/CounterContext";
 
 const globalState = {
   title: "Title",
@@ -18,6 +19,11 @@ const UseContext = () => {
   );
 };
 
+const H1 = () => {
+  const context = useContext(context);
+  console.log(context);
+};
+
 //useReducer
 const reducer = (state, action) => {
   if (action.type === "Change")
@@ -26,13 +32,10 @@ const reducer = (state, action) => {
 };
 
 function App() {
-  const [state, dispatch] = useReducer(reducer, globalState);
-
   return (
-    <GlobalContext.Provider value={state}>
-      <UseContext />
-      <button onClick={() => dispatch({ type: "Change" })}>Click</button>
-    </GlobalContext.Provider>
+    <ContextProvider>
+      <H1 />
+    </ContextProvider>
   );
 }
 
